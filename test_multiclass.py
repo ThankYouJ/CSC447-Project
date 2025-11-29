@@ -7,9 +7,9 @@ import numpy as np
 
 from sklearn.metrics import accuracy_score, classification_report
 
-from features import DATASET_ROOT, ALL_CLASSES, get_combined_features
+from features import DATASET_ROOT, ALL_CLASSES, extract_enhanced_features
 
-MODEL_PATH = "models/multiclass_model.joblib"
+MODEL_PATH = "models/multiclass_best.joblib"
 
 
 def build_test_data():
@@ -33,7 +33,7 @@ def build_test_data():
             if img is None:
                 continue
 
-            feats = get_combined_features(img)
+            feats = extract_enhanced_features(img)
             X.append(feats)
             labels.append(class_name)
 

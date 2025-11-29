@@ -36,10 +36,7 @@ def get_candidate_models():
         "rf_300": RandomForestClassifier(n_estimators=300, max_depth=15, n_jobs=-1, class_weight="balanced"),
         "rf_400": RandomForestClassifier(n_estimators=400, max_depth=10, n_jobs=-1, class_weight="balanced"),
 
-        # Gradient Boosting
-        "gb_lr01": GradientBoostingClassifier(learning_rate=0.1, n_estimators=200, max_depth=3),
-        "gb_lr005": GradientBoostingClassifier(learning_rate=0.05, n_estimators=300, max_depth=3),
-        "gb_lr02": GradientBoostingClassifier(learning_rate=0.2, n_estimators=150, max_depth=2),
+        # Gradient Boosting (Later)
     }
     return models
 

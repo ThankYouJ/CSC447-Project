@@ -114,3 +114,58 @@ def extract_data_for_model(target_disease):
         data[f"y_{phase}"] = np.array(labels, dtype=np.int64)
 
     return data
+
+
+# Add By Peak
+
+from sklearn.preprocessing import LabelEncoder
+
+def get_combined_features(img):
+    """
+    Combine color + texture for ALL images.
+    Returns 11 features: 6 (color) + 5 (texture)
+    """
+    color_feats = get_color_features(img)      # 6
+    texture_feats = get_texture_features(img)  # 5
+    return np.array(color_feats + texture_feats, dtype=np.float32)
+
+def build_multiclass_dataset(phase='train'):
+    """
+    Build a multiclass dataset:
+        X_phase, y_phase, label_encoder
+
+    X_phase: (N, 11)  combined features
+    y_phase: (N,)     encoded labels (0..4)
+    """
+    X = []
+    y = []
+    labels = []
+
+    base_dir = os.path.join(DATASET_ROOT, phase)
+
+    for class_name in ALL_CLASSES:
+        class_dir = os.path.join(base_dir, class_name)
+        if not os.path.isdir(class_dir):
+            continue
+
+        for fname in os.listdir(class_dir):
+            if not fname.lower().endswith((".jpg", ".jpeg", ".png", ".bmp")):
+                continue
+
+            fpath = os.path.join(class_dir, fname)
+            img = cv2.imread(fpath)
+            if img is None:
+                continue
+
+            feats = get_combined_features(img)
+            X.append(feats)
+            labels.append(class_name)
+
+    X = np.array(X, dtype=np.float32)
+
+    # Fit encoder on ALL_CLASSES to keep mapping stable
+    le = LabelEncoder()
+    le.fit(ALL_CLASSES)
+    y = le.transform(labels)
+
+    return X, y, le

@@ -8,3 +8,5 @@ __pycache__/
 
 # Models output
 models/
+
+.DS_Store

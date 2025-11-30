@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 
 from features import build_multiclass_dataset, ALL_CLASSES
@@ -21,25 +21,23 @@ def get_candidate_models():
     All will be wrapped in a Pipeline with StandardScaler.
     """
     models = {
-        # # Logistic Regression
-        # "logreg_c1": LogisticRegression(max_iter=2000, C=1, n_jobs=-1),
-        # "logreg_c01": LogisticRegression(max_iter=2000, C=0.1, n_jobs=-1),
-        # "logreg_c10": LogisticRegression(max_iter=2000, C=10, n_jobs=-1),
+        # Logistic Regression
+        "logreg_c1": LogisticRegression(max_iter=2000, C=1, n_jobs=-1),
+        "logreg_c01": LogisticRegression(max_iter=2000, C=0.1, n_jobs=-1),
+        "logreg_c10": LogisticRegression(max_iter=2000, C=10, n_jobs=-1),
 
         # SVM (RBF)
-        # "svm_c0_1_g_scale": SVC(kernel="rbf", C=0.1, gamma="scale", probability=True),
-        # "svm_c1_g_scale":   SVC(kernel="rbf", C=1,   gamma="scale", probability=True),
+        "svm_c0_1_g_scale": SVC(kernel="rbf", C=0.1, gamma="scale", probability=True),
+        "svm_c1_g_scale":   SVC(kernel="rbf", C=1,   gamma="scale", probability=True),
         # Best model in conclusion
         "svm_c10_g_scale":  SVC(kernel="rbf", C=10,  gamma="scale", probability=True),
         "svm_c30_g_scale": SVC(kernel="rbf", C=3, gamma="scale", probability=True),
         
 
-        # # Random Forest
-        # "rf_200": RandomForestClassifier(n_estimators=500, max_depth=None, n_jobs=-1, class_weight="balanced"),
-        # "rf_300": RandomForestClassifier(n_estimators=600, max_depth=15, n_jobs=-1, class_weight="balanced"),
-        # "rf_400": RandomForestClassifier(n_estimators=700, max_depth=10, n_jobs=-1, class_weight="balanced"),
-
-        # Gradient Boosting (Later)
+        # Random Forest
+        "rf_200": RandomForestClassifier(n_estimators=500, max_depth=None, n_jobs=-1, class_weight="balanced"),
+        "rf_300": RandomForestClassifier(n_estimators=600, max_depth=15, n_jobs=-1, class_weight="balanced"),
+        "rf_400": RandomForestClassifier(n_estimators=700, max_depth=10, n_jobs=-1, class_weight="balanced"),
     }
     return models
 

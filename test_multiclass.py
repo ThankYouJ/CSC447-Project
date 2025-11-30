@@ -14,7 +14,6 @@ MODEL_PATH = "models/multiclass_best.joblib"
 
 def build_test_data():
     X = []
-    y_true = []
     labels = []
 
     base_dir = os.path.join(DATASET_ROOT, "val")
@@ -42,7 +41,7 @@ def build_test_data():
 
 
 def main():
-    print("📦 Loading multiclass model...")
+    print("   Loading multiclass model...")
     bundle = joblib.load(MODEL_PATH)
     model = bundle["model"]
     le = bundle["label_encoder"]
@@ -56,7 +55,7 @@ def main():
 
     acc = accuracy_score(y_true, y_pred)
     print("\n############################################################")
-    print("🏁 MULTICLASS EVALUATION on 'test' set")
+    print("   MULTICLASS EVALUATION on 'test' set")
     print("############################################################")
     print(f"Overall accuracy: {acc*100:.2f}%  ({(y_true==y_pred).sum()}/{len(y_true)} correct)\n")
 

@@ -17,7 +17,7 @@ def build_test_data():
     y_true = []
     labels = []
 
-    base_dir = os.path.join(DATASET_ROOT, "test")
+    base_dir = os.path.join(DATASET_ROOT, "val")
 
     for class_name in ALL_CLASSES:
         class_dir = os.path.join(base_dir, class_name)
@@ -64,19 +64,19 @@ def main():
     print(classification_report(y_true, y_pred, target_names=ALL_CLASSES))
     
     # Confusion matrix
-    from sklearn.metrics import confusion_matrix
-    import seaborn as sns
-    import matplotlib.pyplot as plt
+    # from sklearn.metrics import confusion_matrix
+    # import seaborn as sns
+    # import matplotlib.pyplot as plt
 
-    cm = confusion_matrix(y_true, y_pred)
+    # cm = confusion_matrix(y_true, y_pred)
 
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
-                xticklabels=ALL_CLASSES,
-                yticklabels=ALL_CLASSES)
-    plt.xlabel("Predicted")
-    plt.ylabel("True")
-    plt.show()
+    # plt.figure(figsize=(8, 6))
+    # sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+    #             xticklabels=ALL_CLASSES,
+    #             yticklabels=ALL_CLASSES)
+    # plt.xlabel("Predicted")
+    # plt.ylabel("True")
+    # plt.show()
 
 
 if __name__ == "__main__":

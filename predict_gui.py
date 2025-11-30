@@ -9,7 +9,7 @@ import joblib
 import numpy as np
 from PIL import Image, ImageTk
 
-from features import get_combined_features, ALL_CLASSES
+from features import extract_enhanced_features, ALL_CLASSES
 
 MODEL_PATH = "models/multiclass_best.joblib"
 
@@ -101,7 +101,7 @@ class LeafDiseaseApp:
 
         # Prepare for model (convert to BGR for OpenCV-based feature extractor)
         img_bgr = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
-        feats = get_combined_features(img_bgr).reshape(1, -1)
+        feats = extract_enhanced_features(img_bgr).reshape(1, -1)
 
         # Predict
         preds = self.model.predict(feats)

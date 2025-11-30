@@ -6,4 +6,4 @@ This project extracts feature from [durian leaf disease dataset](https://www.kag
 `pip install fastapi uvicorn python-multipart opencv-python numpy scikit-image scikit-learn joblib pillow matplotlib seaborn xgboost`
 
 ### Start FastAPI server (For the tester UI):
-uvicorn app:app --reload
+`uvicorn app:app --reload`

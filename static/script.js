@@ -6,34 +6,56 @@ let selectedFile = null;
 
 function previewImage(event) {
     selectedFile = event.target.files[0];
+
     let preview = document.getElementById("preview");
     let uploadText = document.getElementById("uploadText");
 
     preview.src = URL.createObjectURL(selectedFile);
-    preview.style.display = "block";
-    uploadText.style.display = "none";
+
+    preview.classList.remove("hidden");
+    uploadText.classList.add("hidden");
 }
 
 async function analyze() {
     if (!selectedFile) {
-        alert("Please upload a leaf image first!");
+        alert("Please upload an image first!");
         return;
     }
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("file", selectedFile);
 
-    let res = await fetch("/predict", {
+    const res = await fetch("/predict", {
         method: "POST",
         body: formData
     });
 
-    let data = await res.json();
+    const data = await res.json();
 
-    let txt = `Prediction: ${data.predicted}\n\nProbabilities:\n`;
-    for (let key in data.probabilities) {
-        txt += `${key}: ${(data.probabilities[key] * 100).toFixed(1)}%\n`;
+    document.getElementById("resultCard").classList.remove("hidden");
+    document.getElementById("resultTitle").innerText =
+        "Prediction Result : " + data.predicted;
+
+
+    const probBlock = document.getElementById("probBlock");
+    probBlock.innerHTML = "";
+
+    for (const [cls, prob] of Object.entries(data.probabilities)) {
+        const p = document.createElement("p");
+        p.innerText = `${cls}: ${(prob * 100).toFixed(1)}%`;
+        probBlock.appendChild(p);
     }
+}
 
-    document.getElementById("result").innerText = txt;
+function toggleProb() {
+    const wrapper = document.getElementById("probWrapper");
+    const btn = document.querySelector(".toggle-btn");
+
+    if (wrapper.classList.contains("hidden")) {
+        wrapper.classList.remove("hidden");
+        btn.innerText = "Hide Possibilities ▲";
+    } else {
+        wrapper.classList.add("hidden");
+        btn.innerText = "Show Possibilities ▼";
+    }
 }

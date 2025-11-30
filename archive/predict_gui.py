@@ -9,7 +9,6 @@ import joblib
 import numpy as np
 from PIL import Image, ImageTk
 
-# ใช้ฟีเจอร์ที่ใช้ตอน train
 from features import extract_enhanced_features, ALL_CLASSES
 
 MODEL_PATH = "models/multiclass_best.joblib"
@@ -102,8 +101,6 @@ class LeafDiseaseApp:
 
         # Convert to BGR for OpenCV-based feature extractor
         img_bgr = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
-
-        # ✨ ใช้ฟังก์ชันที่ถูกต้องสำหรับทำฟีเจอร์ (ตรงกับ TRAIN)
         feats = extract_enhanced_features(img_bgr).reshape(1, -1)
 
         # Predict

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Durian Leaf Disease Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="title">
+            Durian Leaf Disease Detector
+        </h1>
+
+        <p class="subtitle">Upload a leaf image to detect disease 🍃</p>
+
+        <div class="upload-box" id="uploadBox" onclick="chooseFile()">
+            <p id="uploadText">Click to upload image</p>
+            <img id="preview" class="preview" style="display:none;">
+        </div>
+
+        <input type="file" id="fileInput" hidden onchange="previewImage(event)">
+
+        <button class="analyze-btn" onclick="analyze()">Analyze Leaf 🍂</button>
+
+        <div id="result" class="result-box"></div>
+
+    </div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

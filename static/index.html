@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Durian Leaf Disease Detector</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <img src="/static/assets/durian.png" class="logo">
+        <h1 class="brand">Durian Leaf Disease Detector</h1>
+    </header>
+
+    <section class="hero-section">
+        <p class="subtitle">Analyze durian leaf health with AI-powered detection.</p>
+
+        <div id="uploadZone" class="upload-zone" onclick="chooseFile()">
+            <div id="uploadText">Click or drop image here</div>
+            <img id="preview" class="preview hidden" />
+        </div>
+
+        <input id="fileInput" type="file" hidden onchange="previewImage(event)" />
+
+        <button class="analyze-btn" onclick="analyze()">Analyze Leaf </button>
+
+        <div id="resultCard" class="result-card hidden">
+
+            <h2 id="resultTitle">Prediction Result :</h2>
+
+            <button class="toggle-btn" onclick="toggleProb()">Show Possibilities ▼</button>
+
+            <div id="probWrapper" class="prob-wrapper hidden">
+                <div id="probBlock"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        CSC447 © 2025
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

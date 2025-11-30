@@ -3,5 +3,8 @@ This project extracts feature from [durian leaf disease dataset](https://www.kag
 
 # Set up guide
 ## Installing dependencies
-`pip install opencv-python numpy scikit-image scikit-learn joblib pillow matplotlib seaborn xgboost`
+`pip install fastapi uvicorn python-multipart opencv-python numpy scikit-image scikit-learn joblib pillow matplotlib seaborn xgboost`
 
+### Start FastAPI server:
+uvicorn app:app --reload
+http://127.0.0.1:8000
